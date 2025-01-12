@@ -1,0 +1,8 @@
+build:
+	docker build -t FileTransfer:1.0.0 .
+run:
+	docker compose up -d FileTransfer
+restart:
+	docker compose restart FileTransfer
+refresh:
+	git pull && $(MAKE) build && $(MAKE) restart

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>File Transfer</title>
+
+    <meta name="title" content="File Transfer">
+    <meta name="description" content="Transfer files, text, and link between devices locally">
+
+
+    <link rel="stylesheet" href="{{ url_for("static", filename="home.css") }}">
+    <link rel="stylesheet" href="{{ url_for("static", filename="Inter.css") }}">
+</head>
+<body>
+    <nav>
+        <div class="left">
+            LOCAL FILE TRANSFER
+        </div>
+        <div class="right"><span>{{ address }}</span> <span id="status">🟢</span></div>
+    </nav>
+    <header>
+        <div class="left">
+            <h1>LOCAL FILE TRANSFER</h1>
+            <p>Essentially a clipboard between devices</p>
+        </div>
+        <div class="right">
+            <img src="{{ url_for("static", filename="computer.png") }}" height="150"/>
+        </div>
+    </header>
+    <textarea id="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">{{ text }}</textarea>
+
+    <script>
+        document.getElementById("text").addEventListener("input", async (x) => {
+            let res = await fetch('api/change', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    text: document.getElementById("text").value
+                })
+            })
+
+            if (res.status === 200){
+                document.getElementById("status").innerText = "🟢"
+            }else{
+                document.getElementById("status").innerText = "🔴"
+            }
+        })
+    </script>
+</body>
+</html>
