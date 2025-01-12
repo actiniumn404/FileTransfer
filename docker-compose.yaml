@@ -3,5 +3,5 @@ services:
     build: .
     image: filetransfer:1.0.0
     ports:
-      - "8080:8080"
+      - "8008:8008"
     restart: always
