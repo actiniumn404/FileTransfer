@@ -2,10 +2,14 @@ from flask import Flask, render_template, request, jsonify
 from pathlib import Path
 import logging
 import urllib
+import os
 
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True # TODO: Toggle to False
 logging.getLogger('werkzeug').setLevel(logging.ERROR)
+
+if not Path('storage').is_dir():
+    os.makedirs("storage")
 
 if not Path("storage/clipboard.txt").is_file():
     with open("storage/clipboard.txt", "w") as file:
