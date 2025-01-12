@@ -1,6 +1,5 @@
-version: "3.9"
 services:
-  scibowlbot:
+  filetransfer:
     build: .
     image: filetransfer:1.0.0
     ports:
