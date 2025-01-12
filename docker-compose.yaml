@@ -2,7 +2,7 @@ version: "3.9"
 services:
   scibowlbot:
     build: .
-    image: FileTransfer:1.0.0
+    image: filetransfer:1.0.0
     ports:
       - "8080:8080"
     restart: always
